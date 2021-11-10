@@ -459,6 +459,8 @@ this.solver = solver;
                 A5.setRnd(0.0);
                 A5.setTiempoAtencion(0.0);
             }
+            
+             // TP 6
             if (estadoEnsamble == Estado.Libre) {
                 if (this.colaA3 > 0) {
                     this.colaA3--;
@@ -469,6 +471,8 @@ this.solver = solver;
                     solver.calcularSegundoPico();
                     tiempoAtencionEnsamble = solver.getSegundoMaxT();
                     proxFinEnsamble = reloj + tiempoAtencionEnsamble;
+            // TP 6
+            
                     acumColaTerA3++;
                     acumPermColaTerA3 += reloj - histColaTerA3.get(0);
                     histColaTerA3.remove(0);

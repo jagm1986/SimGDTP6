@@ -797,6 +797,7 @@ public class Principal extends javax.swing.JFrame {
         } else {
             solverPrincipal = new RKutta(0.0, bInicial, cInicial, hInicial, x0Inicial, dx0Inicial, auxA1, 300);
         }
+        
         aux1 = new Fila(solverPrincipal);
         historialSolvers.add(solverPrincipal);
         
@@ -1258,7 +1259,7 @@ public class Principal extends javax.swing.JFrame {
                         "x'' - x' - x",      //leyenda Eje vertical
                         dataset,                  //datos
                         PlotOrientation.VERTICAL,  //orientación
-                        false,                      //incluir leyendas
+                        true,                      //incluir leyendas
                         true,                      //mostrar tooltips
                         true);
                 
@@ -1364,7 +1365,7 @@ public class Principal extends javax.swing.JFrame {
                         "x'' - x' - x",      //leyenda Eje vertical
                         dataset,                  //datos
                         PlotOrientation.VERTICAL,  //orientación
-                        false,                      //incluir leyendas
+                        true,                      //incluir leyendas
                         true,                      //mostrar tooltips
                         true);
                 
@@ -1497,6 +1498,61 @@ public class Principal extends javax.swing.JFrame {
             frame.pack();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
+            
+            Workbook workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Test");
+            sheet.setColumnWidth(0, 6000);
+            sheet.setColumnWidth(1, 4000);
+            
+            Row header = sheet.createRow(0);
+            
+            CellStyle headerStyle = workbook.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            
+            Cell headerCell = header.createCell(0);
+            headerCell.setCellValue("x");
+            headerCell.setCellStyle(headerStyle);
+            
+            headerCell = header.createCell(1);
+            headerCell.setCellValue("x''");
+            headerCell.setCellStyle(headerStyle);
+            
+           
+            
+            CellStyle style = workbook.createCellStyle();
+            style.setWrapText(true);
+            
+            for (int i = 0; i < auxSolver.getHist()[0].length; i++) {
+                Row row = sheet.createRow(i+1);
+                Cell cell = row.createCell(0);
+                cell.setCellValue(auxSolver.getHist()[1][i]);
+                cell.setCellStyle(style);
+                
+                cell = row.createCell(1);
+                cell.setCellValue(auxSolver.getHist()[3][i]);
+                cell.setCellStyle(style);
+                
+                
+            }
+            try{
+            File currDir = new File(".");
+            String path = currDir.getAbsolutePath();
+            String fileLocation = path.substring(0, path.length() - 1) + "temp.xls";
+            
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = new FileOutputStream(fileLocation);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            workbook.write(outputStream);
+            workbook.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
              
         } else {
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -1529,6 +1585,59 @@ public class Principal extends javax.swing.JFrame {
             frame.pack();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
+            
+              Workbook workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Test");
+            sheet.setColumnWidth(0, 6000);
+            sheet.setColumnWidth(1, 4000);
+            
+            Row header = sheet.createRow(0);
+            
+            CellStyle headerStyle = workbook.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            
+            Cell headerCell = header.createCell(0);
+            headerCell.setCellValue("x");
+            headerCell.setCellStyle(headerStyle);
+            
+            headerCell = header.createCell(1);
+            headerCell.setCellValue("x''");
+            headerCell.setCellStyle(headerStyle);
+            
+           
+            
+            CellStyle style = workbook.createCellStyle();
+            style.setWrapText(true);
+            
+            for (int i = 0; i < auxSolver.getHist()[0].length; i++) {
+                Row row = sheet.createRow(i+1);
+                Cell cell = row.createCell(0);
+                cell.setCellValue(auxSolver.getHist()[1][i]);
+                cell.setCellStyle(style);
+                
+                cell = row.createCell(1);
+                cell.setCellValue(auxSolver.getHist()[7][i]);
+                cell.setCellStyle(style); 
+            }
+            try{
+            File currDir = new File(".");
+            String path = currDir.getAbsolutePath();
+            String fileLocation = path.substring(0, path.length() - 1) + "temp.xls";
+            
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = new FileOutputStream(fileLocation);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            workbook.write(outputStream);
+            workbook.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
         }
         
         
@@ -1577,6 +1686,59 @@ public class Principal extends javax.swing.JFrame {
             frame.pack();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
+            
+              Workbook workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Test");
+            sheet.setColumnWidth(0, 6000);
+            sheet.setColumnWidth(1, 4000);
+            
+            Row header = sheet.createRow(0);
+            
+            CellStyle headerStyle = workbook.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            
+            Cell headerCell = header.createCell(0);
+            headerCell.setCellValue("x");
+            headerCell.setCellStyle(headerStyle);
+            
+            headerCell = header.createCell(1);
+            headerCell.setCellValue("x'");
+            headerCell.setCellStyle(headerStyle);
+            
+           
+            
+            CellStyle style = workbook.createCellStyle();
+            style.setWrapText(true);
+            
+            for (int i = 0; i < auxSolver.getHist()[0].length; i++) {
+                Row row = sheet.createRow(i+1);
+                Cell cell = row.createCell(0);
+                cell.setCellValue(auxSolver.getHist()[1][i]);
+                cell.setCellStyle(style);
+                
+                cell = row.createCell(1);
+                cell.setCellValue(auxSolver.getHist()[2][i]);
+                cell.setCellStyle(style); 
+            }
+            try{
+            File currDir = new File(".");
+            String path = currDir.getAbsolutePath();
+            String fileLocation = path.substring(0, path.length() - 1) + "temp.xls";
+            
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = new FileOutputStream(fileLocation);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            workbook.write(outputStream);
+            workbook.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
              
         } else {
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -1609,6 +1771,59 @@ public class Principal extends javax.swing.JFrame {
             frame.pack();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
+            
+              Workbook workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Test");
+            sheet.setColumnWidth(0, 6000);
+            sheet.setColumnWidth(1, 4000);
+            
+            Row header = sheet.createRow(0);
+            
+            CellStyle headerStyle = workbook.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            
+            Cell headerCell = header.createCell(0);
+            headerCell.setCellValue("x");
+            headerCell.setCellStyle(headerStyle);
+            
+            headerCell = header.createCell(1);
+            headerCell.setCellValue("x'");
+            headerCell.setCellStyle(headerStyle);
+            
+           
+            
+            CellStyle style = workbook.createCellStyle();
+            style.setWrapText(true);
+            
+            for (int i = 0; i < auxSolver.getHist()[0].length; i++) {
+                Row row = sheet.createRow(i+1);
+                Cell cell = row.createCell(0);
+                cell.setCellValue(auxSolver.getHist()[1][i]);
+                cell.setCellStyle(style);
+                
+                cell = row.createCell(1);
+                cell.setCellValue(auxSolver.getHist()[6][i]);
+                cell.setCellStyle(style); 
+            }
+            try{
+            File currDir = new File(".");
+            String path = currDir.getAbsolutePath();
+            String fileLocation = path.substring(0, path.length() - 1) + "temp.xls";
+            
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = new FileOutputStream(fileLocation);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            workbook.write(outputStream);
+            workbook.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
         }
     }//GEN-LAST:event_graficarBtn2ActionPerformed
 
@@ -1655,6 +1870,59 @@ public class Principal extends javax.swing.JFrame {
             frame.pack();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
+            
+              Workbook workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Test");
+            sheet.setColumnWidth(0, 6000);
+            sheet.setColumnWidth(1, 4000);
+            
+            Row header = sheet.createRow(0);
+            
+            CellStyle headerStyle = workbook.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            
+            Cell headerCell = header.createCell(0);
+            headerCell.setCellValue("x'");
+            headerCell.setCellStyle(headerStyle);
+            
+            headerCell = header.createCell(1);
+            headerCell.setCellValue("x''");
+            headerCell.setCellStyle(headerStyle);
+            
+           
+            
+            CellStyle style = workbook.createCellStyle();
+            style.setWrapText(true);
+            
+            for (int i = 0; i < auxSolver.getHist()[0].length; i++) {
+                Row row = sheet.createRow(i+1);
+                Cell cell = row.createCell(0);
+                cell.setCellValue(auxSolver.getHist()[2][i]);
+                cell.setCellStyle(style);
+                
+                cell = row.createCell(1);
+                cell.setCellValue(auxSolver.getHist()[3][i]);
+                cell.setCellStyle(style); 
+            }
+            try{
+            File currDir = new File(".");
+            String path = currDir.getAbsolutePath();
+            String fileLocation = path.substring(0, path.length() - 1) + "temp.xls";
+            
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = new FileOutputStream(fileLocation);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            workbook.write(outputStream);
+            workbook.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
              
         } else {
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -1687,6 +1955,59 @@ public class Principal extends javax.swing.JFrame {
             frame.pack();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
+            
+              Workbook workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Test");
+            sheet.setColumnWidth(0, 6000);
+            sheet.setColumnWidth(1, 4000);
+            
+            Row header = sheet.createRow(0);
+            
+            CellStyle headerStyle = workbook.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            
+            Cell headerCell = header.createCell(0);
+            headerCell.setCellValue("x'");
+            headerCell.setCellStyle(headerStyle);
+            
+            headerCell = header.createCell(1);
+            headerCell.setCellValue("x''");
+            headerCell.setCellStyle(headerStyle);
+            
+           
+            
+            CellStyle style = workbook.createCellStyle();
+            style.setWrapText(true);
+            
+            for (int i = 0; i < auxSolver.getHist()[0].length; i++) {
+                Row row = sheet.createRow(i+1);
+                Cell cell = row.createCell(0);
+                cell.setCellValue(auxSolver.getHist()[6][i]);
+                cell.setCellStyle(style);
+                
+                cell = row.createCell(1);
+                cell.setCellValue(auxSolver.getHist()[7][i]);
+                cell.setCellStyle(style); 
+            }
+            try{
+            File currDir = new File(".");
+            String path = currDir.getAbsolutePath();
+            String fileLocation = path.substring(0, path.length() - 1) + "temp.xls";
+            
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = new FileOutputStream(fileLocation);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            workbook.write(outputStream);
+            workbook.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
         }
     }//GEN-LAST:event_graficarBtn3ActionPerformed
 
